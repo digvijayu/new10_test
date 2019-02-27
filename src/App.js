@@ -3,21 +3,21 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import locale_en from 'react-intl/locale-data/en';
-import locale_de from 'react-intl/locale-data/de';
+import locale_nl from 'react-intl/locale-data/nl';
 
 import rootReducer from './reducers';
 import './App.scss';
 import Home from './pages/Home';
-import messages_de from './translations/de.json';
+import messages_nl from './translations/nl.json';
 import messages_en from './translations/en.json';
 import { isSupportedLanguage } from './utils';
 
 const messages = {
-  de: messages_de,
+  nl: messages_nl,
   en: messages_en
 };
 
-addLocaleData([...locale_en, ...locale_de]);
+addLocaleData([...locale_en, ...locale_nl]);
 
 const store = createStore(rootReducer);
 
