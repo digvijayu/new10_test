@@ -1,0 +1,41 @@
+$primary-bg-color: #6964d8;
+$secondary-bg-color: #e6e6e6;
+$primary-text-color: #333333;
+$secondary-text-color: #ffffff;
+$font-family: Roboto,sans-serif;
+
+$i: 8;
+@while $i > 0 {
+  .nt-font-#{$i} {
+    font-size: 4rem / $i;
+  }
+
+  .nt-ma-#{$i} {
+    margin: 4rem / $i;
+  }
+
+  .nt-mt-#{$i} {
+    margin-top: 4rem / $i;
+  }
+
+  .nt-mr-#{$i} {
+    margin-right: 4rem / $i;
+  }
+
+  .nt-mb-#{$i} {
+    margin-bottom: 4rem / $i;
+  }
+
+  .nt-ml-#{$i} {
+    margin-left: 4rem / $i;
+  }
+  $i: $i - 1;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
