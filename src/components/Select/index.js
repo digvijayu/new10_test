@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Select extends Component {
+
+  renderOptions() {
+    const { options, selected } = this.props;
+    return <>
+      {
+        options.map((option, index) =>
+          (
+            <option selected={selected === option} key={index}>{option}</option>
+          )
+        )
+      }
+    </>
+  }
+
   render() {
     return (
       <select>
-        <option>opt1</option>
-        <option>opt2</option>
-        <option>opt3</option>
+        {
+          this.renderOptions()
+        }
       </select>
     );
   }
 }
+
+Select.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selected: PropTypes.string
+};
 
 export default Select;

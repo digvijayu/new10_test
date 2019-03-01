@@ -27,6 +27,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "chai": "^4.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
     "node-sass": "^4.11.0",
     "prettier": "^1.16.4"
   }

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 class RangeSelector extends Component {
   render() {
-    return (
-      <input type="range"/>
-    );
+    return <input type="range" />;
   }
 }
 

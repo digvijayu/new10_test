@@ -8,7 +8,7 @@ export const changeTarget = selectedTarget => ({
   selectedTarget
 });
 
-export const changeBusinessFrom = businessForm => ({
+export const changeBusinessForm = businessForm => ({
   type: 'BUSINESS_FROM_TARGET_CHANGE',
   businessForm
 });
