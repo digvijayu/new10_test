@@ -1,9 +1,46 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './style.scss';
 
 class RangeSelector extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value || props.min
+    };
+  }
+
+  handleOnChange(e) {
+    this.setState({
+      ...this.state,
+      value: e.target.value
+    });
+  }
+
   render() {
-    return <input type="range" />;
+    const { min, max, steps } = this.props;
+    const { value } = this.state;
+    return (
+      <div>
+        <input
+          className="nt-range-selector"
+          type="range"
+          min={min}
+          max={max}
+          steps={steps}
+          value={value}
+          onChange={this.handleOnChange.bind(this)}
+        />
+      </div>
+    );
   }
 }
+
+RangeSelector.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  steps: PropTypes.number,
+  value: PropTypes.number
+};
 
 export default RangeSelector;

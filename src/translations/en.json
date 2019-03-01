@@ -6,5 +6,7 @@
   "duration": "Duration",
   "check.link": "Check if you are eligible",
   "submit.button": "Get started right away",
-  "footer.description": "Calculate an automatically generated customized offer. Contact us via 020-2621800 for questions or comments."
+  "footer.description1": "Calculate an automatically generated customized offer. Contact us via ",
+  "footer.description2": "020-2621800 ",
+  "footer.description3": "for questions or comments."
 }

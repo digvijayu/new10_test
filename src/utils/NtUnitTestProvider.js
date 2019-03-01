@@ -9,7 +9,7 @@ import rootReducer from './../reducers';
 
 const enTranslationData = require('./../translations/en.json');
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
 function NtUnitTestProvider(component) {
   const store = createStore(rootReducer);

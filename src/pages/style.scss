@@ -2,21 +2,9 @@
 
 .nt-home-page {
   color: $primary-text-color;
-}
 
-.nt-row {
-  display: flex;
-  flex-direction: row;
-
-  .nt-row-item {
-    flex: 1;
-  }
-
-  .nt-left-row-padding {
-    padding: 1rem 1rem 1rem 0;
-  }
-
-  .nt-right-row-padding {
-    padding: 1rem 0 1rem 1rem;
+  .nl-footer-text {
+    color: $secondary-bg-color;
+    font-size: 0.875rem;
   }
 }

@@ -1,9 +1,10 @@
 $primary-bg-color: #6964d8;
-$secondary-bg-color: #e6e6e6;
+$border-color: #d2cefd;
+$secondary-bg-color: #adadad;
 $primary-text-color: #333333;
 $secondary-text-color: #ffffff;
 $font-family: Roboto,sans-serif;
-
+$link-color: #00c88f;
 $i: 8;
 @while $i > 0 {
   .nt-font-#{$i} {
@@ -38,4 +39,72 @@ $i: 8;
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.nl-select {
+  width: 100%;
+  padding: 0.3125rem 2.1875rem 0.3125rem 1rem;
+  font-size: 0.9rem;
+  border: 2px solid $border-color;
+  border-radius: 0.3rem;
+  height: 3rem;
+  font-weight: bold;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("/img/down-arrow.png") 96% / 15% no-repeat transparent;
+  background-size: 1.5rem;
+}
+
+.nl-label {
+  font-size: 1rem;
+  @extend .nt-mt-4;
+  @extend .nt-mb-4;
+  @extend .bold;
+}
+
+.nt-row {
+  display: flex;
+  flex-direction: row;
+
+  .nt-row-item {
+    flex: 1;
+  }
+
+  .nt-left-row-padding {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  .nt-right-row-padding {
+    padding: 1rem 0 1rem 1rem;
+  }
+}
+
+.nl-primary-btn {
+  background-color: $primary-bg-color;
+  color: $secondary-text-color;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  outline: 0;
+  border: 1px solid $primary-bg-color;
+  padding: 0.8125rem 2.1875rem;
+  border-radius: 1.5625rem;
+}
+
+.nl-primary-link {
+  font-weight: bold;
+  cursor: pointer;
+  color: $link-color;
+  border-bottom: 2px solid $link-color;
+  text-decoration: none;
+}
+
+.nl-flex-center {
+  align-items: center;
 }
