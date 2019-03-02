@@ -18,14 +18,21 @@ class Select extends Component {
       this.props.onChange(e.target.value);
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ...this.state,
+      val: nextProps.selected
+    });
+  }
+
   renderOptions() {
     const { options } = this.props;
-    const { val } = this.state;
     return (
       <>
         {options.map((option, index) => {
           return (
-            <option selected={val === option} value={option} key={index}>
+            <option value={option} key={index}>
               {option}
             </option>
           );
@@ -35,12 +42,12 @@ class Select extends Component {
   }
 
   render() {
-    const { options, selected } = this.props;
     const { val } = this.state;
     return (
       <select
         className="nl-select"
         onChange={this.handleOnSelectChange.bind(this)}
+        value={val}
       >
         {this.renderOptions()}
       </select>

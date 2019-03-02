@@ -6,7 +6,7 @@ import CurrencyInput from './index';
 
 describe('Select - should function properly', () => {
   it('should render the component value if specified', () => {
-    const { jsx, store } = NtUnitTestProvider(<CurrencyInput value={200} />);
+    const { jsx, store } = NtUnitTestProvider(<CurrencyInput value={200} min={200} max={4000} />);
     const rangeSelector = mount(jsx);
     expect(
       rangeSelector
@@ -17,7 +17,7 @@ describe('Select - should function properly', () => {
   });
 
   it('should render the component with specified value', () => {
-    const { jsx, store } = NtUnitTestProvider(<CurrencyInput value={3.0} />);
+    const { jsx, store } = NtUnitTestProvider(<CurrencyInput value={3.0}  min={200} max={4000} />);
     const rangeSelector = mount(jsx);
     expect(
       rangeSelector

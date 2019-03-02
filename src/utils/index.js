@@ -11,3 +11,9 @@ export const isFloat = val => {
   if (isNaN(val)) return false;
   return true;
 };
+
+export const numberWithCommas = num => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
+export const removeComma = str => str.replace(/,/g, '');

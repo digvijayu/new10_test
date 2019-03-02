@@ -3,18 +3,17 @@ import {
   PRODUCT_MARKETING,
   PRODUCT_EQUIPMENT,
   LEGAL_BV,
-  LEGAL_EENMANSZAK,
   TERMS
 } from './../utils/constants';
 
 export const getMaxAmount = (selectedTarget, businessForm) => {
-  return selectedTarget == PRODUCT_EQUIPMENT && businessForm == LEGAL_BV
+  return selectedTarget === PRODUCT_EQUIPMENT && businessForm === LEGAL_BV
     ? 500000
     : 250000;
 };
 
 export const getMaxDuration = selectedTarget => {
-  return selectedTarget == PRODUCT_MARKETING ? 36 : 60;
+  return selectedTarget === PRODUCT_MARKETING ? 36 : 60;
 };
 
 export const getRateOfInterest = (amount, duration) => {

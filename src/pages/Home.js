@@ -38,12 +38,22 @@ class Home extends Component {
   handleOnDurationChange(newDuration) {
     let duration = TERMS[3];
     for (let index = 0; index < TERMS.length; index++) {
-      if (newDuration == '' + TERMS[index] + ' months') {
+      if (newDuration === '' + TERMS[index] + ' months') {
         duration = TERMS[index];
         break;
       }
     }
     this.props.changeDurationValue(parseInt(duration));
+  }
+
+  handleOnDurationChangeFromNum(newDuration) {
+    let duration = TERMS[3];
+    for (let index = 0; index < TERMS.length; index++) {
+      if (newDuration >= TERMS[index]) {
+        duration = TERMS[index];
+      }
+    }
+    this.props.changeDurationValue(duration);
   }
 
   render() {
@@ -99,6 +109,8 @@ class Home extends Component {
               <CurrencyInput
                 onChange={this.handleOnAmountChange.bind(this)}
                 value={selectedAmount}
+                min={MIN_AMT}
+                max={maxFinancingValue}
               />
             </div>
           </div>
@@ -132,7 +144,7 @@ class Home extends Component {
               min={TERMS[0]}
               max={maxDuration}
               value={selectedDuration}
-              onChange={this.handleOnDurationChange.bind(this)}
+              onChange={this.handleOnDurationChangeFromNum.bind(this)}
             />
           </div>
         </div>
@@ -141,7 +153,7 @@ class Home extends Component {
 
         <div className="nt-row nt-ma-2 nl-flex-center">
           <div className="nt-row-item text-right nt-row-item nt-mr-2">
-            <a href="#" className="nl-primary-link">
+            <a href="https://new10.com/" className="nl-primary-link">
               <Text>check.link</Text>
             </a>
           </div>
