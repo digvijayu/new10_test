@@ -12,15 +12,24 @@ class CurrencyInput extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.state.value) {
+      this.setState({
+        value: nextProps.value,
+        text: nextProps.value.toString()
+      });
+    }
+  }
+
   handleOnChange(e) {
     const textNum = e.target.value;
     const { onChange } = this.props;
     this.setState({
+      ...this.state,
       text: textNum
     });
-
-    if (isFloat(textNum) && this.onChange) {
-      this.onChange(parseFloat(textNum));
+    if (isFloat(textNum) && this.props.onChange) {
+      this.props.onChange(parseFloat(textNum));
     }
   }
 
@@ -33,8 +42,8 @@ class CurrencyInput extends Component {
         value: number,
         text: number.toString()
       });
-      if (this.onChange) {
-        this.onChange(number);
+      if (this.props.onChange) {
+        this.props.onChange(number);
       }
     } else {
       this.setState({

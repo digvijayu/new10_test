@@ -15,6 +15,16 @@ class RangeSelector extends Component {
       ...this.state,
       value: e.target.value
     });
+
+    if (this.props.onChange) {
+      this.props.onChange(parseFloat(e.target.value));
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.state.value) {
+      this.setState({ value: nextProps.value });
+    }
   }
 
   render() {
@@ -40,7 +50,8 @@ RangeSelector.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   steps: PropTypes.number,
-  value: PropTypes.number
+  value: PropTypes.number,
+  onChange: PropTypes.func
 };
 
 export default RangeSelector;

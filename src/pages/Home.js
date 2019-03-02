@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   appError,
   changeTarget,
-  changeBusinessFrom,
+  changeBusinessForm,
   changeFinancingValue,
   changeDurationValue
 } from './../actions';
@@ -18,15 +18,45 @@ import {
   PRODUCT_EQUIPMENT,
   LEGAL_BV,
   LEGAL_EENMANSZAK,
-  TERMS
+  TERMS,
+  MIN_AMT
 } from './../utils/constants';
 
 class Home extends Component {
   handleOnAmountChange(newAmount) {
-    console.log('update amount', newAmount);
+    this.props.changeFinancingValue(newAmount);
+  }
+
+  handleOnTargetChange(newTarget) {
+    this.props.changeTarget(newTarget);
+  }
+
+  handleOnBusinessFormChange(newForm) {
+    this.props.changeBusinessForm(newForm);
+  }
+
+  handleOnDurationChange(newDuration) {
+    let duration = TERMS[3];
+    for (let index = 0; index < TERMS.length; index++) {
+      if (newDuration == '' + TERMS[index] + ' months') {
+        duration = TERMS[index];
+        break;
+      }
+    }
+    this.props.changeDurationValue(parseInt(duration));
   }
 
   render() {
+    const {
+      selectedTarget,
+      businessForm,
+      maxFinancingValue,
+      maxDuration,
+      selectedDuration,
+      selectedAmount,
+      rateOfInterest
+    } = this.props;
+
     return (
       <div className="nt-home-page nt-ma-4">
         <div className="nt-title nt-font-2 bold text-center">
@@ -39,7 +69,11 @@ class Home extends Component {
               <Text>target</Text>
             </div>
             <div>
-              <Select options={[PRODUCT_MARKETING, PRODUCT_EQUIPMENT]} />
+              <Select
+                options={[PRODUCT_MARKETING, PRODUCT_EQUIPMENT]}
+                selected={selectedTarget}
+                onChange={this.handleOnTargetChange.bind(this)}
+              />
             </div>
           </div>
           <div className="nt-row-item nt-right-row-padding">
@@ -47,7 +81,11 @@ class Home extends Component {
               <Text>business.form</Text>
             </div>
             <div>
-              <Select options={[LEGAL_BV, LEGAL_EENMANSZAK]} />
+              <Select
+                options={[LEGAL_BV, LEGAL_EENMANSZAK]}
+                selected={businessForm}
+                onChange={this.handleOnBusinessFormChange.bind(this)}
+              />
             </div>
           </div>
         </div>
@@ -58,12 +96,20 @@ class Home extends Component {
               <Text>Financing</Text>
             </div>
             <div className="nt-row-item nt-right-row-padding nt-right-col">
-              <CurrencyInput onChange={this.handleOnAmountChange.bind(this)} />
+              <CurrencyInput
+                onChange={this.handleOnAmountChange.bind(this)}
+                value={selectedAmount}
+              />
             </div>
           </div>
 
           <div>
-            <RangeSelector />
+            <RangeSelector
+              min={MIN_AMT}
+              max={maxFinancingValue}
+              value={selectedAmount}
+              onChange={this.handleOnAmountChange.bind(this)}
+            />
           </div>
 
           <div className="nt-row">
@@ -71,14 +117,27 @@ class Home extends Component {
               <Text>Duration</Text>
             </div>
             <div className="nt-row-item nt-right-row-padding nt-right-col">
-              <Select options={TERMS.map(item => '' + item)} />
+              <Select
+                options={TERMS.filter(item => item <= maxDuration).map(
+                  item => '' + item + ' months'
+                )}
+                selected={selectedDuration + ' months'}
+                onChange={this.handleOnDurationChange.bind(this)}
+              />
             </div>
           </div>
 
           <div>
-            <RangeSelector />
+            <RangeSelector
+              min={TERMS[0]}
+              max={maxDuration}
+              value={selectedDuration}
+              onChange={this.handleOnDurationChange.bind(this)}
+            />
           </div>
         </div>
+
+        <div className="nt-font-2 nt-ma-2">Rate: {rateOfInterest}</div>
 
         <div className="nt-row nt-ma-2 nl-flex-center">
           <div className="nt-row-item text-right nt-row-item nt-mr-2">
@@ -87,7 +146,7 @@ class Home extends Component {
             </a>
           </div>
           <div>
-            <button class="nl-primary-btn">
+            <button className="nl-primary-btn">
               <Text>check.link</Text>
             </button>
           </div>
@@ -108,12 +167,20 @@ class Home extends Component {
 const mapStateToText = state => ({
   selectedTarget: state.appReducer.selectedTarget,
   businessForm: state.appReducer.businessForm,
-  financingValue: state.appReducer.financingValue,
-  durationValue: state.appReducer.durationValue
+  maxFinancingValue: state.appReducer.maxFinancingValue,
+  maxDuration: state.appReducer.maxDuration,
+  selectedDuration: state.appReducer.selectedDuration,
+  selectedAmount: state.appReducer.selectedAmount,
+  rateOfInterest: state.appReducer.rateOfInterest
 });
 
 export const mapDispatch = dispatch => ({
-  appError: message => dispatch(appError(message))
+  appError: message => dispatch(appError(message)),
+  changeTarget: target => dispatch(changeTarget(target)),
+  changeBusinessForm: businessForm =>
+    dispatch(changeBusinessForm(businessForm)),
+  changeFinancingValue: value => dispatch(changeFinancingValue(value)),
+  changeDurationValue: duration => dispatch(changeDurationValue(duration))
 });
 
 export default connect(

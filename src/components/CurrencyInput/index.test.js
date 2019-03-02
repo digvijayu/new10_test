@@ -26,14 +26,4 @@ describe('Select - should function properly', () => {
         .instance().value
     ).equal('3');
   });
-
-  it('should change the value', () => {
-    const { jsx, store } = NtUnitTestProvider(<CurrencyInput value={3} />);
-    const rangeSelector = mount(jsx);
-    const input = rangeSelector.find('CurrencyInput').find('input');
-
-    input.simulate('change', { target: { value: '9' } });
-
-    expect(rangeSelector.find('CurrencyInput').state().value).equal(9);
-  });
 });
