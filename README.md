@@ -21,3 +21,7 @@ The build is minified and the filenames include the hashes.
 ### `npm run format`
 
 Formats the js files
+
+
+### Live
+https://digvijayu.github.io/new10_test/build/index.html
