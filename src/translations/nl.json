@@ -1,3 +1,15 @@
 {
-  "test": "Some Test Text1"
+  "title": "Stel je zakelijke financiering samen",
+  "target": "Doel",
+  "business.form": "Bedrijfsvorm",
+  "financing": "Financiering",
+  "duration": "Looptijd",
+  "check.link": "Check of je in aanmerking komt",
+  "submit.button": "Direct aan de slag",
+  "footer.description1": "CBereken een automatisch gegenereerd aanbod op maat. Neem contact op via ",
+  "footer.description2": "020-2621800 ",
+  "footer.description3": "voor vragen of opmerkingen hierover.",
+  "interest": "Interesseren: ",
+  "months": " maanden",
+  "change.lang": "Wijzig taal"
 }

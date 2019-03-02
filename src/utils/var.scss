@@ -5,6 +5,7 @@ $primary-text-color: #333333;
 $secondary-text-color: #ffffff;
 $font-family: Roboto,sans-serif;
 $link-color: #00c88f;
+$small-screen: 600px;
 $i: 8;
 @while $i > 0 {
   .nt-font-#{$i} {
@@ -70,19 +71,41 @@ $i: 8;
 .nt-row {
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: $small-screen) {
+    flex-direction: column;
+  }
 
   .nt-row-item {
     flex: 1;
+    @media screen and (max-width: $small-screen) {
+      padding: 1rem 0;
+    }
   }
 
   .nt-left-row-padding {
     padding: 1rem 1rem 1rem 0;
+    @media screen and (max-width: $small-screen) {
+      padding: 1rem 0;
+    }
   }
 
   .nt-right-row-padding {
     padding: 1rem 0 1rem 1rem;
+    @media screen and (max-width: $small-screen) {
+      padding: 1rem 0;
+    }
   }
 }
+
+.nt-row-unchanged {
+  display: flex;
+  flex-direction: row;
+
+  .nt-row-item {
+    flex: 1;
+  }
+}
+
 
 .nl-primary-btn {
   background-color: $primary-bg-color;

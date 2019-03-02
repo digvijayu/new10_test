@@ -94,7 +94,7 @@ class CurrencyInput extends Component {
   render() {
     const { text } = this.state;
     return (
-      <div className="nt-row nt-currency-input-container">
+      <div className="nt-row-unchanged nt-currency-input-container">
         <div className="nt-symbol">€</div>
         <div className="nt-input-col">
           <input

@@ -8,5 +8,8 @@
   "submit.button": "Get started right away",
   "footer.description1": "Calculate an automatically generated customized offer. Contact us via ",
   "footer.description2": "020-2621800 ",
-  "footer.description3": "for questions or comments."
+  "footer.description3": "for questions or comments.",
+  "interest": "Interest: ",
+  "months": " months",
+  "change.lang": "Change Language"
 }

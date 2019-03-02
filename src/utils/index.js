@@ -17,3 +17,8 @@ export const numberWithCommas = num => {
 };
 
 export const removeComma = str => str.replace(/,/g, '');
+
+export const getLanguage = () => {
+  let language = navigator.language.split(/[-_]/)[0]; // language without region code
+  return isSupportedLanguage(language) ? language : 'en';
+};

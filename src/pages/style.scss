@@ -7,4 +7,16 @@
     color: $secondary-bg-color;
     font-size: 0.875rem;
   }
+
+  .nt-roi {
+    color: $primary-bg-color;
+    font-weight: bold;
+  }
+
+  .nt-link {
+    @extend .nt-mr-2;
+    @media screen and (max-width: $small-screen) {
+      margin: 0;
+    }
+  }
 }

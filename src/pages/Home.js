@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
 
 import {
   appError,
@@ -38,7 +39,7 @@ class Home extends Component {
   handleOnDurationChange(newDuration) {
     let duration = TERMS[3];
     for (let index = 0; index < TERMS.length; index++) {
-      if (newDuration === '' + TERMS[index] + ' months') {
+      if (newDuration === '' + TERMS[index] + this.getMonthText()) {
         duration = TERMS[index];
         break;
       }
@@ -71,6 +72,17 @@ class Home extends Component {
       <div className="nt-home-page nt-ma-4">
         <div className="nt-title nt-font-2 bold text-center">
           <Text>title</Text>
+        </div>
+
+        <div
+          className="text-right nt-mt-2"
+          onClick={() => {
+            this.props.onChangeLang();
+          }}
+        >
+          <span className="nl-primary-link">
+            <Text>change.lang</Text>
+          </span>
         </div>
 
         <div className="nt-row">
@@ -131,9 +143,9 @@ class Home extends Component {
             <div className="nt-row-item nt-right-row-padding nt-right-col">
               <Select
                 options={TERMS.filter(item => item <= maxDuration).map(
-                  item => '' + item + ' months'
+                  item => '' + item + this.getMonthText()
                 )}
-                selected={selectedDuration + ' months'}
+                selected={selectedDuration + this.getMonthText()}
                 onChange={this.handleOnDurationChange.bind(this)}
               />
             </div>
@@ -149,10 +161,12 @@ class Home extends Component {
           </div>
         </div>
 
-        <div className="nt-font-2 nt-ma-2">Rate: {rateOfInterest}</div>
+        <div className="nt-font-2 nt-mt-2 nt-mb-2 nt-roi">
+          <Text>interest</Text> {rateOfInterest}
+        </div>
 
         <div className="nt-row nt-ma-2 nl-flex-center">
-          <div className="nt-row-item text-right nt-row-item nt-mr-2">
+          <div className="nt-row-item text-right nt-row-item nt-link">
             <a href="https://new10.com/" className="nl-primary-link">
               <Text>check.link</Text>
             </a>
@@ -173,6 +187,12 @@ class Home extends Component {
         </div>
       </div>
     );
+  }
+
+  getMonthText() {
+    return this.props.intl.formatMessage({
+      id: 'months'
+    });
   }
 }
 
@@ -198,4 +218,4 @@ export const mapDispatch = dispatch => ({
 export default connect(
   mapStateToText,
   mapDispatch
-)(Home);
+)(injectIntl(Home));

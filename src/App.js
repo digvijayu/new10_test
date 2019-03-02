@@ -10,7 +10,8 @@ import './App.scss';
 import Home from './pages/Home';
 import messages_nl from './translations/nl.json';
 import messages_en from './translations/en.json';
-import { isSupportedLanguage } from './utils';
+import { getLanguage } from './utils';
+import { SUPPORTED_LANGUAGES } from './utils/constants';
 
 const messages = {
   nl: messages_nl,
@@ -22,15 +23,30 @@ addLocaleData([...locale_en, ...locale_nl]);
 const store = createStore(rootReducer);
 
 class App extends Component {
-  render() {
-    let language = navigator.language.split(/[-_]/)[0]; // language without region code
-    language = isSupportedLanguage(language) ? language : 'en';
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: getLanguage()
+    };
+  }
 
+  handleOnLangChange() {
+    this.setState({
+      ...this.state,
+      lang:
+        this.state.lang === SUPPORTED_LANGUAGES[0]
+          ? SUPPORTED_LANGUAGES[1]
+          : SUPPORTED_LANGUAGES[0]
+    });
+  }
+
+  render() {
+    const { lang } = this.state;
     return (
       <Provider store={store}>
-        <IntlProvider locale={language} messages={messages[language]}>
+        <IntlProvider locale={lang} messages={messages[lang]}>
           <div className="nt-app">
-            <Home />
+            <Home onChangeLang={this.handleOnLangChange.bind(this)} />
           </div>
         </IntlProvider>
       </Provider>
